@@ -1,6 +1,11 @@
-<h2>
+<!-- így lehet dinamikusan css stílust adni: [class. ...] Mögé egy logikai feltétel kell, ami ki/be kapcsolja -->
+<div class="container" [class.success]="isComplete"> 
+  <h2 [ngClass]="{red: !isComplete, green: isComplete}"> <!-- [ngclass] stílusnév a css osztályból utána egy logikai feltétel, + különben ág... -->
     {{counter?.name}}
   </h2>
-<button (click)="incrementCounter()">Számláló növelése</button>
-<div>{{count}}/{{aim}}</div>
+  <button #btn (click)="incrementCounter()">Számláló növelése</button>
+  <div [ngStyle]="{color: isComplete ? '#558b2f' : '#e53935'}">{{count}}/{{aim}}</div> <!-- [ngStyle] név szerinti stílusozás feltétel szerint -->
+  <div *ngIf="!isComplete">Hajrá </div>
+
+</div>
 

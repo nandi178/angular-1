@@ -5,5 +5,8 @@
   {{title}}
 </h2>
 
-<app-counter [aim]="5" [counter]="counter2" (countChange)="countChanged($event)"></app-counter>
+<!-- *ngIf láthatóságát lehet megadni egy boolean feltétellel -->
+<app-counter *ngIf="!isComplete" [aim]="5" [counter]="counter2" (countChange)="countChanged($event)"></app-counter>
+
+<app-counter [aim]="3" [counter]="{name: 'izé', id: 3}" ></app-counter>
 <img [src]="logoSrc" width="20%">
