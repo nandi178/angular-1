@@ -4,9 +4,18 @@
 <h2>
   {{title}}
 </h2>
+<div>
+  <label>Hány számlálót szeretnél?</label>
+  <!-- körülményesebb megoldás:
+  <input [value]="counterCount" (change)="counterCountChanged($event)" type="number"> -->
+  
+  <!-- appmodule.ts-be: FormsModul importtal: -->
+  <input [(ngModel)]="counterCount" (ngModelChange)="counterCountChanged()" type="number">
+  {{counterCount}}
+</div>
 
 <!-- *ngIf láthatóságát lehet megadni egy boolean feltétellel -->
 <app-counter *ngIf="!isComplete" [aim]="5" [counter]="counter2" (countChange)="countChanged($event)"></app-counter>
-
 <app-counter [aim]="3" [counter]="{name: 'izé', id: 3}" ></app-counter>
+<app-counter *ngFor="let c of counters" [aim]="c.aim" [counter]="{name: c.name, id: c.id}"></app-counter> <!-- let kulcsszóval megadjuk a c nevű iterációs változónkat, utána a tömb neve, amin végig akarunk menni. Itt counters. -->
 <img [src]="logoSrc" width="20%">

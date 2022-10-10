@@ -3,9 +3,13 @@
   <h2 [ngClass]="{red: !isComplete, green: isComplete}"> <!-- [ngclass] stílusnév a css osztályból utána egy logikai feltétel, + különben ág... -->
     {{counter?.name}}
   </h2>
+  <input [ngClass]="{red: !isComplete, green: isComplete}" type="text" [(ngModel)]="counter!.name"> <!-- A felkiáltó jel, azt jelenti, hogy mi jobban tudjuk a fordítónál és biztos nem lesz undefined-->
   <button #btn (click)="incrementCounter()">Számláló növelése</button>
   <div [ngStyle]="{color: isComplete ? '#558b2f' : '#e53935'}">{{count}}/{{aim}}</div> <!-- [ngStyle] név szerinti stílusozás feltétel szerint -->
-  <div *ngIf="!isComplete">Hajrá </div>
-
+  <div *ngIf="!isComplete; else elseContent">{{'Hajrá' | uppercase}} </div> <!-- pipe: | -->
+  <ng-template #elseContent> <!-- ELSE ág -->
+    Szép munka!
+  </ng-template>
+  {{counter | json}} <!--debuggoláshoz json pipe. -->
 </div>
 
